@@ -28,4 +28,8 @@ nexus/sphinx_docs/_build/
 *.pem
 
 QMC_DATA_FULL
-*.dat
+
+/*.dat
+/*.h5
+/*.xml
+

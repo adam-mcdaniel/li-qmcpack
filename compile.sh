@@ -11,7 +11,7 @@ export CXXFLAGS="-fopenmp"
 
 mkdir build && cd build
 cmake -DCMAKE_BUILD_TYPE=Release \
-    -DQMC_GPU="openmp;hip" \
+    -DQMC_GPU="hip" \
     -DQMC_GPU_ARCHS="gfx90a" \
     -DQMC_MPI="on" \
     -DQMC_DATA=$QMCPACK_ROOT/QMC_DATA_FULL \
