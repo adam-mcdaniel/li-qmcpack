@@ -1,6 +1,7 @@
 *.pyc
 .DS_Store
 /build_*/
+/build/
 nexus/nexus/tests/*output
 tests/solids/NiO_a4_e48_pp/NiO-fcc-supertwist111-supershift000-S1.h5
 
@@ -25,3 +26,5 @@ nexus/sphinx_docs/_build/
 # Certificates
 *.crt
 *.pem
+
+QMC_DATA_FULL
