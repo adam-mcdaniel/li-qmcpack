@@ -20,5 +20,5 @@ fi
 ldd $QMCPACK_ROOT/build/bin/qmcpack
 
 export OMP_NUM_THREADS=4
-srun -A csc688 -t10 -N1 -c7 -n8 --gpu-bind=closest $QMCPACK_ROOT/build/bin/qmcpack /lustre/orion/csc688/world-shared/interceptor-bench/li-qmcpack/examples/molecules/He/he_simple.xml
+srun -A csc688 -t10 -N1 -c7 -n8 --gpu-bind=closest $QMCPACK_ROOT/build/bin/qmcpack $QMCPACK_ROOT/examples/molecules/He/he_simple.xml
 
