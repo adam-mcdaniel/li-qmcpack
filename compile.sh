@@ -25,13 +25,24 @@ rm -Rf build && mkdir build && cd build
 export CFLAGS="-fopenmp -L$CRAY_MPICH_PREFIX/lib/ -lmpi_gtl_hsa"
 export CXXFLAGS="-fopenmp -L$CRAY_MPICH_PREFIX/lib/ -lmpi_gtl_hsa"
 
-cmake -DCMAKE_BUILD_TYPE=Release \
-    -DBLAS_LIBRARIES="$OLCF_OPENBLAS_ROOT/lib/libopenblas.so" \
-    -DLAPACK_LIBRARIES="$OLCF_OPENBLAS_ROOT/lib/libopenblas.so" \
-    -DQMC_GPU="hip" \
-    -DQMC_GPU_ARCHS="gfx90a" \
-    -DQMC_MPI="on" \
-    -DQMC_DATA=$QMCPACK_ROOT/QMC_DATA_FULL \
-    ..
+if [ -d ../QMC_DATA_FULL ]; then
+    cmake -DCMAKE_BUILD_TYPE=Release \
+        -DBLAS_LIBRARIES="$OLCF_OPENBLAS_ROOT/lib/libopenblas.so" \
+        -DLAPACK_LIBRARIES="$OLCF_OPENBLAS_ROOT/lib/libopenblas.so" \
+        -DQMC_GPU="hip" \
+        -DQMC_GPU_ARCHS="gfx90a" \
+        -DQMC_MPI="on" \
+        -DQMC_DATA=$QMCPACK_ROOT/QMC_DATA_FULL \
+        ..
+else
+    echo "QMC_DATA_FULL directory does not exist. Building without it."
+    cmake -DCMAKE_BUILD_TYPE=Release \
+        -DBLAS_LIBRARIES="$OLCF_OPENBLAS_ROOT/lib/libopenblas.so" \
+        -DLAPACK_LIBRARIES="$OLCF_OPENBLAS_ROOT/lib/libopenblas.so" \
+        -DQMC_GPU="hip" \
+        -DQMC_GPU_ARCHS="gfx90a" \
+        -DQMC_MPI="on" \
+        ..
+fi
 
 make -j64
